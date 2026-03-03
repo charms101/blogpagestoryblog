@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Storybook Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Chelsea+Market&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== LANDING PAGE ===================== -->
+<div id="landing">
+  <div class="sky"></div>
+  <div class="stars" id="stars"></div>
+  <div class="moon"></div>
+
+  <!-- SVG Town -->
+  <svg class="town-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ground -->
+    <rect x="0" y="760" width="1440" height="140" fill="#1a0a00"/>
+    <rect x="0" y="750" width="1440" height="20" fill="#2a1200" rx="2"/>
+    <!-- Cobblestone path -->
+    <ellipse cx="720" cy="860" rx="200" ry="40" fill="#120800" opacity="0.5"/>
+    
+    <!-- Far buildings (silhouette) -->
+    <rect x="0" y="500" width="120" height="260" fill="#0d0500"/>
+    <polygon points="0,500 60,420 120,500" fill="#0d0500"/>
+    <rect x="30" y="540" width="20" height="30" fill="#2a1a00" opacity="0.6"/>
+    <rect x="70" y="540" width="20" height="30" fill="#ffcc44" opacity="0.25"/>
+
+    <rect x="100" y="560" width="90" height="200" fill="#110600"/>
+    <polygon points="100,560 145,490 190,560" fill="#110600"/>
+    <rect x="120" y="600" width="18" height="25" fill="#ffcc44" opacity="0.3"/>
+    <rect x="152" y="600" width="18" height="25" fill="#2a1a00" opacity="0.5"/>
+
+    <rect x="180" y="530" width="140" height="230" fill="#0e0500"/>
+    <polygon points="180,530 250,450 320,530" fill="#0e0500"/>
+    <!-- Tower -->
+    <rect x="250" y="430" width="30" height="60" fill="#0e0500"/>
+    <polygon points="250,430 265,400 280,430" fill="#0e0500"/>
+    <rect x="255" y="460" width="20" height="20" fill="#ffcc44" opacity="0.4"/>
+    <rect x="200" y="570" width="22" height="30" fill="#ffcc44" opacity="0.35"/>
+    <rect x="238" y="570" width="22" height="30" fill="#1a0a00"/>
+    <rect x="276" y="570" width="22" height="30" fill="#ffcc44" opacity="0.2"/>
+
+    <!-- Mid buildings -->
+    <rect x="350" y="580" width="100" height="180" fill="#150800"/>
+    <polygon points="350,580 400,510 450,580" fill="#150800"/>
+    <rect x="370" y="620" width="20" height="28" fill="#ffcc44" opacity="0.4"/>
+    <rect x="410" y="620" width="20" height="28" fill="#1a0a00"/>
+
+    <rect x="440" y="560" width="80" height="200" fill="#120600"/>
+    <rect x="440" y="520" width="80" height="45" fill="#120600"/>
+    <polygon points="440,520 480,465 520,520" fill="#120600"/>
+    <rect x="455" y="600" width="18" height="25" fill="#ffcc44" opacity="0.5"/>
+    <rect x="487" y="600" width="18" height="25" fill="#ffcc44" opacity="0.2"/>
+
+    <!-- Church / big centerpiece -->
+    <rect x="600" y="500" width="200" height="260" fill="#0f0600"/>
+    <polygon points="600,500 700,400 800,500" fill="#0f0600"/>
+    <!-- Steeple -->
+    <rect x="685" y="380" width="30" height="80" fill="#0f0600"/>
+    <polygon points="680,380 700,330 720,380" fill="#0f0600"/>
+    <!-- Cross -->
+    <rect x="698" y="340" width="4" height="18" fill="#2a1400"/>
+    <rect x="694" y="346" width="12" height="3" fill="#2a1400"/>
+    <!-- Windows (glowing) -->
+    <rect x="630" y="540" width="28" height="40" rx="14" fill="#ffaa00" opacity="0.5"/>
+    <rect x="740" y="540" width="28" height="40" rx="14" fill="#ffaa00" opacity="0.3"/>
+    <rect x="685" y="540" width="30" height="50" rx="15" fill="#ffcc44" opacity="0.6"/>
+    <!-- Door -->
+    <rect x="690" y="700" width="40" height="60" rx="20 20 0 0" fill="#1a0800"/>
+
+    <!-- Right side buildings -->
+    <rect x="860" y="560" width="110" height="200" fill="#120600"/>
+    <polygon points="860,560 915,490 970,560" fill="#120600"/>
+    <rect x="875" y="600" width="20" height="28" fill="#ffcc44" opacity="0.35"/>
+    <rect x="910" y="600" width="20" height="28" fill="#1a0a00"/>
+    <rect x="945" y="600" width="18" height="28" fill="#ffcc44" opacity="0.25"/>
+
+    <rect x="990" y="540" width="130" height="220" fill="#0e0500"/>
+    <polygon points="990,540 1055,460 1120,540" fill="#0e0500"/>
+    <rect x="1010" y="580" width="22" height="30" fill="#ffcc44" opacity="0.45"/>
+    <rect x="1050" y="580" width="22" height="30" fill="#ffcc44" opacity="0.25"/>
+    <rect x="1088" y="580" width="22" height="30" fill="#1a0a00"/>
+
+    <rect x="1150" y="560" width="90" height="200" fill="#110500"/>
+    <polygon points="1150,560 1195,480 1240,560" fill="#110500"/>
+    <rect x="1165" y="600" width="18" height="25" fill="#ffcc44" opacity="0.3"/>
+    <rect x="1203" y="600" width="18" height="25" fill="#1a0a00"/>
+
+    <rect x="1260" y="530" width="180" height="230" fill="#0d0400"/>
+    <polygon points="1260,530 1350,450 1440,530" fill="#0d0400"/>
+    <rect x="1280" y="570" width="20" height="28" fill="#ffcc44" opacity="0.4"/>
+    <rect x="1380" y="570" width="20" height="28" fill="#ffcc44" opacity="0.2"/>
+
+    <!-- Lamp posts -->
+    <line x1="330" y1="750" x2="330" y2="620" stroke="#2a1400" stroke-width="3"/>
+    <circle cx="330" cy="615" r="10" fill="#ffcc44" opacity="0.7"/>
+    <ellipse cx="330" cy="640" rx="18" ry="6" fill="#ffaa00" opacity="0.15"/>
+
+    <line x1="550" y1="750" x2="550" y2="620" stroke="#2a1400" stroke-width="3"/>
+    <circle cx="550" cy="615" r="10" fill="#ffcc44" opacity="0.6"/>
+    <ellipse cx="550" cy="640" rx="18" ry="6" fill="#ffaa00" opacity="0.12"/>
+
+    <line x1="900" y1="750" x2="900" y2="620" stroke="#2a1400" stroke-width="3"/>
+    <circle cx="900" cy="615" r="10" fill="#ffcc44" opacity="0.65"/>
+    <ellipse cx="900" cy="640" rx="18" ry="6" fill="#ffaa00" opacity="0.13"/>
+
+    <line x1="1130" y1="750" x2="1130" y2="620" stroke="#2a1400" stroke-width="3"/>
+    <circle cx="1130" cy="615" r="10" fill="#ffcc44" opacity="0.5"/>
+    <ellipse cx="1130" cy="640" rx="18" ry="6" fill="#ffaa00" opacity="0.1"/>
+
+    <!-- Fog / ground mist -->
+    <ellipse cx="720" cy="755" rx="800" ry="30" fill="#3a1a00" opacity="0.25"/>
+    <ellipse cx="300" cy="760" rx="400" ry="20" fill="#2a1000" opacity="0.2"/>
+    <ellipse cx="1100" cy="760" rx="400" ry="20" fill="#2a1000" opacity="0.2"/>
+  </svg>
+
+  <!-- Bird + Scroll Scene -->
+  <div id="bird-scene">
+    <div class="bird-container" id="bird">
+      <svg class="bird-svg" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="60" cy="48" rx="22" ry="13" fill="#2c1810"/>
+        <!-- Head -->
+        <circle cx="82" cy="40" r="11" fill="#2c1810"/>
+        <!-- Beak -->
+        <polygon points="93,39 103,41 93,44" fill="#c9a96e"/>
+        <!-- Eye -->
+        <circle cx="86" cy="38" r="3" fill="#f4e4c1"/>
+        <circle cx="87" cy="38" r="1.5" fill="#1a0f08"/>
+        <!-- Tail -->
+        <polygon points="38,48 22,42 24,55" fill="#2c1810"/>
+        <polygon points="38,50 18,52 22,60" fill="#3d2210"/>
+        <!-- Wing left -->
+        <g class="wing-left">
+          <ellipse cx="52" cy="36" rx="26" ry="9" fill="#3d2210" transform="rotate(-15 52 36)"/>
+          <ellipse cx="44" cy="32" rx="16" ry="5" fill="#4e2e15" transform="rotate(-20 44 32)"/>
+        </g>
+        <!-- Wing right -->
+        <g class="wing-right">
+          <ellipse cx="52" cy="56" rx="24" ry="8" fill="#3d2210" transform="rotate(10 52 56)"/>
+        </g>
+        <!-- Feet with scroll -->
+        <line x1="58" y1="61" x2="52" y2="72" stroke="#8b5e3c" stroke-width="1.5"/>
+        <line x1="66" y1="61" x2="72" y2="72" stroke="#8b5e3c" stroke-width="1.5"/>
+        <!-- Twine from foot to scroll -->
+        <line x1="62" y1="72" x2="62" y2="85" stroke="#6b3d1e" stroke-width="1.5"/>
+        <!-- Mini scroll -->
+        <rect x="50" y="83" width="24" height="16" rx="3" fill="#e8d4a0" stroke="#8b5e3c" stroke-width="1"/>
+        <rect x="48" y="81" width="28" height="5" rx="2.5" fill="#8b5e3c"/>
+        <rect x="48" y="94" width="28" height="5" rx="2.5" fill="#8b5e3c"/>
+        <line x1="62" y1="81" x2="62" y2="99" stroke="#6b3d1e" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Candles -->
+  <div class="candle" style="position:absolute;bottom:40px;left:10%">
+    <div class="candle-flame"></div>
+    <div class="candle-body"></div>
+  </div>
+  <div class="candle" style="position:absolute;bottom:40px;right:10%">
+    <div class="candle-flame"></div>
+    <div class="candle-body"></div>
+  </div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+
+  <!-- Intro text (appears after bird) -->
+  <div class="intro-text" id="intro-text">
+    <h1>The Storybook Blog</h1>
+    <p>tales from the old town</p>
+  </div>
+
+  <div class="scroll-hint" id="scroll-hint">✦ scroll down ✦</div>
+</div>
+
+<!-- ===================== SCROLL UNROLL SECTION ===================== -->
+<div id="scroll-section">
+  <div class="candle" style="position:absolute;bottom:40px;left:8%">
+    <div class="candle-flame"></div>
+    <div class="candle-body"></div>
+  </div>
+  <div class="candle" style="position:absolute;bottom:40px;right:8%">
+    <div class="candle-flame"></div>
+    <div class="candle-body"></div>
+  </div>
+
+  <div class="big-scroll" id="big-scroll">
+    <div class="scroll-top-roller"></div>
+    <div class="scroll-body" id="scroll-body">
+      <div class="scroll-inner">
+        <div class="scroll-title">Chronicles of the Old Town</div>
+        <div class="scroll-subtitle">— a collection of tales, musings & midnight thoughts —</div>
+        <div class="divider">❧</div>
+        <ul class="blog-list" id="blog-list">
+          <!-- Populated by JS -->
+        </ul>
+        <div class="divider" style="margin-top:24px">✦</div>
+        <p style="text-align:center;font-style:italic;font-size:13px;color:var(--sepia);margin-top:8px">Click any entry to read the full tale</p>
+      </div>
+    </div>
+    <div class="scroll-bottom-roller"></div>
+  </div>
+</div>
+
+<!-- ===================== SECRET CODE OVERLAY ===================== -->
+<div id="secret-overlay">
+  <div class="secret-box">
+    <button class="secret-close" onclick="document.getElementById('secret-overlay').classList.remove('active')">✕</button>
+    <h2>Publisher's Gate</h2>
+    <p>speak the secret word to enter</p>
+    <input type="password" class="secret-input" id="secret-input" placeholder="· · · · · · ·" maxlength="20" />
+    <button class="secret-enter-btn" onclick="checkSecret()">Enter the Study ✦</button>
+    <div class="secret-error" id="secret-error">The word does not match. Try again.</div>
+  </div>
+</div>
+
+<!-- ===================== PUBLISHER BADGE ===================== -->
+<div id="pub-badge" onclick="toggleDashboard()">✦ Publisher Study</div>
+
+<!-- ===================== PUBLISHER DASHBOARD ===================== -->
+<div id="publisher-dashboard">
+  <div class="pub-header">
+    <div class="pub-logo">🪶 <span>The Publisher's Study</span></div>
+    <div class="pub-nav">
+      <button class="pub-nav-btn active" onclick="switchPubTab('posts', this)">📜 Entries</button>
+      <button class="pub-nav-btn" onclick="switchPubTab('comments', this)">💬 Comments</button>
+    </div>
+    <button class="pub-exit-btn" onclick="exitPublisher()">✕ Exit Study</button>
+  </div>
+  <div class="pub-content">
+    <!-- POSTS PANEL -->
+    <div class="pub-panel active" id="pub-panel-posts">
+      <div class="pub-section-title">📖 All Entries</div>
+      <div class="pub-section-sub">manage, edit, or remove your published tales</div>
+      <div class="post-cards" id="pub-post-cards"></div>
+      <button class="new-post-btn" onclick="openEditor(null)">✦ Write a New Entry</button>
+      <!-- INLINE EDITOR -->
+      <div id="editor-panel">
+        <hr class="pub-divider">
+        <div class="editor-wrap">
+          <div class="editor-title-row">
+            <div class="editor-heading" id="editor-heading">New Entry</div>
+            <div class="editor-badge" id="editor-badge">COMPOSING</div>
+          </div>
+          <div class="editor-field">
+            <label class="editor-label">Title of the Tale</label>
+            <input type="text" class="editor-input" id="ed-title" placeholder="e.g. The Clockmaker's Last Watch..." />
+          </div>
+          <div class="editor-field">
+            <label class="editor-label">Date (as it appears on parchment)</label>
+            <input type="text" class="editor-input" id="ed-date" placeholder="e.g. 14th of October, in the year of Our Lord 1889" />
+          </div>
+          <div class="editor-field">
+            <label class="editor-label">The Story</label>
+            <textarea class="editor-textarea" id="ed-body" placeholder="Begin your tale here... Separate paragraphs with blank lines."></textarea>
+            <div class="editor-hint">Tip: Separate paragraphs with blank lines. No HTML needed — formatted automatically.</div>
+          </div>
+          <div class="editor-actions">
+            <button class="save-btn" onclick="savePost()">✦ Seal & Publish</button>
+            <button class="cancel-btn" onclick="closeEditor()">Cancel</button>
+            <div class="save-notice" id="save-notice">✓ Entry saved to the chronicles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- COMMENTS PANEL -->
+    <div class="pub-panel" id="pub-panel-comments">
+      <div class="pub-section-title">💬 Reader's Remarks</div>
+      <div class="pub-section-sub">review, edit, or remove comments left by your readers</div>
+      <div class="comment-manage-list" id="comment-manage-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BLOG POST PAGE ===================== -->
+<div id="post-page">
+  <div class="post-parchment" id="post-parchment">
+    <button class="back-btn" id="back-btn">← Return to the Scroll</button>
+    <div class="post-header">
+      <div class="post-number" id="post-number"></div>
+      <h1 class="post-title" id="post-title"></h1>
+      <div class="post-date" id="post-date"></div>
+    </div>
+    <div class="post-body" id="post-body"></div>
+
+    <!-- Comments -->
+    <div class="comment-section">
+      <h3>📜 Reader's Remarks</h3>
+      <div class="existing-comments" id="existing-comments"></div>
+      <button class="comment-toggle-btn" id="comment-toggle-btn">Leave a Comment</button>
+      <div class="comment-form" id="comment-form">
+        <div>
+          <label>Your Name, Traveller</label>
+          <input type="text" id="comment-name" placeholder="e.g. Edmund of the North..." />
+        </div>
+        <div>
+          <label>Your Words</label>
+          <textarea id="comment-text" placeholder="Speak your thoughts upon these pages..."></textarea>
+        </div>
+        <button class="comment-submit" id="comment-submit">Seal & Send ✦</button>
+        <div class="comment-success" id="comment-success">
+          ✦ Your words have been received. The town thanks you. ✦
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
