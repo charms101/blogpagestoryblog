@@ -205,7 +205,7 @@ document.getElementById('comment-submit').addEventListener('click', async () => 
     ec.appendChild(div);
   });
 
-  btn.textContent = 'Seal & Send ✦';
+  btn.textContent = 'Post Comment ✦';
   btn.disabled = false;
   document.getElementById('comment-form').classList.remove('open');
   document.getElementById('comment-name').value = '';
@@ -213,6 +213,8 @@ document.getElementById('comment-submit').addEventListener('click', async () => 
   const success = document.getElementById('comment-success');
   success.style.display = 'block';
   setTimeout(() => { success.style.display = 'none'; }, 4000);
+
+  spawnFrameButterflies(); // 🦋 butterfly celebration!
 });
 
 // ============================================================
@@ -429,3 +431,118 @@ async function deleteComment(id) {
   await db.deleteComment(id);
   renderPubComments();
 }
+
+// ===================== FRAME BUTTERFLIES (comment celebration) =====================
+function spawnFrameButterflies() {
+  const count = 14;
+  const colors = ['#ff4db8', '#ff88d0', '#bf00ff', '#dd66ff', '#ffb3e6'];
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.innerHTML = makeButterflySVG(colors[i % colors.length], 18 + Math.random() * 14);
+      b.style.cssText = `
+        position: fixed;
+        pointer-events: none;
+        z-index: 9000;
+        animation: frameFly ${1.8 + Math.random() * 1.4}s ease-in-out forwards;
+      `;
+      const edge = Math.floor(Math.random() * 4);
+      if (edge === 0)      { b.style.left = Math.random() * 100 + 'vw'; b.style.top = '-30px'; }
+      else if (edge === 1) { b.style.left = Math.random() * 100 + 'vw'; b.style.bottom = '-30px'; }
+      else if (edge === 2) { b.style.left = '-30px'; b.style.top = Math.random() * 100 + 'vh'; }
+      else                 { b.style.right = '-30px'; b.style.top = Math.random() * 100 + 'vh'; }
+      b.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
+      b.style.setProperty('--ty', (Math.random() - 0.5) * 200 + 'px');
+      b.style.setProperty('--rot', (Math.random() * 360) + 'deg');
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 3500);
+    }, i * 120);
+  }
+  if (!document.getElementById('frameFlyStyle')) {
+    const s = document.createElement('style');
+    s.id = 'frameFlyStyle';
+    s.textContent = `
+      @keyframes frameFly {
+        0%   { opacity: 0; transform: translate(0,0) rotate(0deg) scale(0.5); }
+        20%  { opacity: 1; transform: translate(calc(var(--tx)*0.3), calc(var(--ty)*0.3)) rotate(60deg) scale(1); }
+        80%  { opacity: 0.8; transform: translate(calc(var(--tx)*0.8), calc(var(--ty)*0.8)) rotate(200deg) scale(1.1); }
+        100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.6); }
+      }
+      @keyframes wingFlutter {
+        0%,100% { transform: scaleX(1); }
+        50%     { transform: scaleX(0.3); }
+      }
+    `;
+    document.head.appendChild(s);
+  }
+}
+
+function makeButterflySVG(color, size) {
+  const light = color === '#ff4db8' ? '#ffaadd' : color === '#bf00ff' ? '#dd88ff' : '#ffccee';
+  return `<svg width="${size}" height="${size}" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"
+    style="filter:drop-shadow(0 0 4px ${color}) drop-shadow(0 0 10px ${color}88)">
+    <g style="animation:wingFlutter 0.25s ease-in-out infinite alternate;transform-origin:20px 20px">
+      <path d="M20,18 Q8,6 2,12 Q0,22 12,24 Z" fill="${color}" opacity="0.9"/>
+      <path d="M20,22 Q8,28 4,36 Q14,40 20,30 Z" fill="${color}" opacity="0.7"/>
+    </g>
+    <g style="animation:wingFlutter 0.25s ease-in-out infinite alternate-reverse;transform-origin:20px 20px">
+      <path d="M20,18 Q32,6 38,12 Q40,22 28,24 Z" fill="${color}" opacity="0.9"/>
+      <path d="M20,22 Q32,28 36,36 Q26,40 20,30 Z" fill="${color}" opacity="0.7"/>
+    </g>
+    <ellipse cx="20" cy="21" rx="2.5" ry="7" fill="${light}" opacity="0.95"/>
+    <circle cx="20" cy="14" r="2" fill="${light}"/>
+  </svg>`;
+}
+
+// ===================== CURSOR BUTTERFLY =====================
+(function initCursorButterfly() {
+  const cb = document.createElement('div');
+  cb.id = 'cursor-butterfly';
+  cb.style.cssText = `position:fixed;pointer-events:none;z-index:9998;opacity:0;transition:opacity 0.5s ease;transform:translate(-50%,-50%);display:none;`;
+  cb.innerHTML = `<svg width="28" height="28" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"
+    style="filter:drop-shadow(0 0 5px #ff4db8) drop-shadow(0 0 12px #bf00ff88)">
+    <g style="transform-origin:20px 20px;animation:cbWing 0.22s ease-in-out infinite alternate">
+      <path d="M20,18 Q8,6 2,12 Q0,22 12,24 Z" fill="#ff4db8" opacity="0.92"/>
+      <path d="M20,22 Q8,28 4,36 Q14,40 20,30 Z" fill="#ff4db8" opacity="0.75"/>
+    </g>
+    <g style="transform-origin:20px 20px;animation:cbWing 0.22s ease-in-out infinite alternate-reverse">
+      <path d="M20,18 Q32,6 38,12 Q40,22 28,24 Z" fill="#dd66ff" opacity="0.92"/>
+      <path d="M20,22 Q32,28 36,36 Q26,40 20,30 Z" fill="#dd66ff" opacity="0.75"/>
+    </g>
+    <ellipse cx="20" cy="21" rx="2" ry="6" fill="#ffbbee" opacity="0.95"/>
+    <circle cx="20" cy="14" r="1.8" fill="#ffbbee"/>
+    <line x1="18" y1="13" x2="13" y2="8" stroke="#ffbbee" stroke-width="0.8"/>
+    <line x1="22" y1="13" x2="27" y2="8" stroke="#ffbbee" stroke-width="0.8"/>
+    <circle cx="13" cy="8" r="1.2" fill="#ff4db8"/>
+    <circle cx="27" cy="8" r="1.2" fill="#ff4db8"/>
+  </svg>`;
+  document.body.appendChild(cb);
+
+  const s = document.createElement('style');
+  s.textContent = `@keyframes cbWing { from { transform: scaleX(1); } to { transform: scaleX(0.25); } }`;
+  document.head.appendChild(s);
+
+  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+  let currentX = mouseX, currentY = mouseY;
+  let visible = false;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    if (!visible) { cb.style.opacity = '1'; visible = true; }
+  });
+  document.addEventListener('mouseleave', () => { cb.style.opacity = '0'; visible = false; });
+
+  function animate() {
+    currentX += (mouseX - currentX) * 0.08;
+    currentY += (mouseY - currentY) * 0.08;
+    const tilt = Math.max(-25, Math.min(25, (mouseX - currentX) * 0.4));
+    cb.style.left = currentX + 'px';
+    cb.style.top = currentY + 'px';
+    cb.style.transform = `translate(-50%, -50%) rotate(${tilt}deg)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Appears after the landing butterfly flies away (~7s)
+  setTimeout(() => { cb.style.display = 'block'; }, 7000);
+})();
