@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neural Chronicles</title>
+<title>Chronicles of Charmi</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -17,325 +17,332 @@
   <div class="stars" id="stars"></div>
   <div class="moon"></div>
 
-  <!-- Cyberpunk City SVG -->
+  <!-- Pink Cyberpunk City SVG -->
   <svg class="town-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <filter id="neonCyan"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      <filter id="neonPink"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      <filter id="glow2"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glowPink"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glowPurple"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glowSoft"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       <linearGradient id="groundGrad" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stop-color="#001a2e"/>
-        <stop offset="100%" stop-color="#000508"/>
+        <stop offset="0%" stop-color="#3d0050"/>
+        <stop offset="100%" stop-color="#1a0028"/>
       </linearGradient>
-      <linearGradient id="skyFog" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stop-color="transparent"/>
-        <stop offset="100%" stop-color="rgba(0,10,20,0.8)"/>
+      <!-- Building gradients - rich pink/purple fills -->
+      <linearGradient id="bldA" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#4a0060"/>
+        <stop offset="100%" stop-color="#2d0040"/>
+      </linearGradient>
+      <linearGradient id="bldB" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#5c0055"/>
+        <stop offset="100%" stop-color="#380035"/>
+      </linearGradient>
+      <linearGradient id="bldC" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#3a0065"/>
+        <stop offset="100%" stop-color="#200045"/>
+      </linearGradient>
+      <linearGradient id="bldD" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#600050"/>
+        <stop offset="100%" stop-color="#3d0035"/>
+      </linearGradient>
+      <linearGradient id="bldE" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#520060"/>
+        <stop offset="100%" stop-color="#300042"/>
       </linearGradient>
     </defs>
 
-    <!-- Ground / road -->
-    <rect x="0" y="760" width="1440" height="140" fill="url(#groundGrad)"/>
-    <!-- Road markings -->
-    <rect x="0" y="762" width="1440" height="2" fill="#00f5ff" opacity="0.3"/>
-    <rect x="0" y="898" width="1440" height="2" fill="#00f5ff" opacity="0.2"/>
-    <!-- Center lane dashes -->
-    <rect x="0" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="120" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="240" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="360" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="480" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="600" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="720" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="840" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="960" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="1080" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="1200" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <rect x="1320" y="830" width="60" height="3" fill="#ff0090" opacity="0.4"/>
-    <!-- Grid on road -->
-    <line x1="0" y1="795" x2="1440" y2="795" stroke="#00f5ff" stroke-width="0.5" opacity="0.1"/>
-    <line x1="0" y1="830" x2="1440" y2="830" stroke="#00f5ff" stroke-width="0.5" opacity="0.1"/>
+    <!-- Ground -->
+    <rect x="0" y="755" width="1440" height="145" fill="url(#groundGrad)"/>
+    <!-- Road glow line -->
+    <rect x="0" y="757" width="1440" height="2" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <!-- Road dashes -->
+    <rect x="0"    y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="160"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="320"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="480"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="640"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="800"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="960"  y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="1120" y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <rect x="1280" y="828" width="80" height="3" fill="#cc44ff" opacity="0.85"/>
+    <!-- Road reflections -->
+    <ellipse cx="720" cy="800" rx="600" ry="18" fill="#ff4db8" opacity="0.18"/>
 
-    <!-- Far background megastructures -->
-    <rect x="0" y="280" width="80" height="480" fill="#020a12"/>
-    <rect x="10" y="260" width="60" height="30" fill="#020a12"/>
-    <rect x="20" y="250" width="40" height="20" fill="#020a12"/>
-    <!-- Windows grid -->
-    <rect x="15" y="300" width="10" height="8" fill="#00f5ff" opacity="0.6"/>
-    <rect x="30" y="300" width="10" height="8" fill="#00f5ff" opacity="0.3"/>
-    <rect x="45" y="300" width="10" height="8" fill="#ff0090" opacity="0.5"/>
-    <rect x="15" y="320" width="10" height="8" fill="#00f5ff" opacity="0.2"/>
-    <rect x="30" y="320" width="10" height="8" fill="#ff0090" opacity="0.4"/>
-    <rect x="45" y="320" width="10" height="8" fill="#00f5ff" opacity="0.5"/>
-    <rect x="15" y="340" width="10" height="8" fill="#bf00ff" opacity="0.4"/>
-    <rect x="30" y="340" width="10" height="8" fill="#00f5ff" opacity="0.3"/>
-    <rect x="45" y="340" width="10" height="8" fill="#00f5ff" opacity="0.6"/>
-    <!-- Antenna -->
-    <line x1="40" y1="250" x2="40" y2="210" stroke="#00f5ff" stroke-width="1.5" opacity="0.8"/>
-    <circle cx="40" cy="210" r="4" fill="#00f5ff" opacity="0.9" filter="url(#neonCyan)"/>
+    <!-- FAR BACKGROUND - hazy purple silhouettes -->
+    <rect x="0"    y="400" width="70"  height="355" fill="#4a0060" opacity="0.7"/>
+    <rect x="60"   y="350" width="50"  height="405" fill="#4a0060" opacity="0.6"/>
+    <rect x="120"  y="420" width="60"  height="335" fill="#3a0055" opacity="0.7"/>
+    <rect x="200"  y="370" width="80"  height="385" fill="#420058" opacity="0.65"/>
+    <rect x="1200" y="380" width="80"  height="375" fill="#420058" opacity="0.65"/>
+    <rect x="1290" y="350" width="70"  height="405" fill="#4a0060" opacity="0.6"/>
+    <rect x="1360" y="410" width="80"  height="345" fill="#4a0060" opacity="0.7"/>
 
-    <rect x="100" y="350" width="120" height="410" fill="#030d18"/>
-    <rect x="110" y="330" width="100" height="30" fill="#030d18"/>
-    <!-- Big windows -->
-    <rect x="115" y="370" width="22" height="35" fill="#00f5ff" opacity="0.15"/>
-    <rect x="143" y="370" width="22" height="35" fill="#ff0090" opacity="0.2"/>
-    <rect x="171" y="370" width="22" height="35" fill="#00f5ff" opacity="0.1"/>
-    <rect x="115" y="415" width="22" height="35" fill="#bf00ff" opacity="0.2"/>
-    <rect x="143" y="415" width="22" height="35" fill="#00f5ff" opacity="0.25"/>
-    <rect x="171" y="415" width="22" height="35" fill="#ff0090" opacity="0.15"/>
-    <rect x="115" y="460" width="22" height="35" fill="#00f5ff" opacity="0.3"/>
-    <rect x="143" y="460" width="22" height="35" fill="#00f5ff" opacity="0.1"/>
-    <rect x="171" y="460" width="22" height="35" fill="#bf00ff" opacity="0.25"/>
-    <!-- Neon sign on side -->
-    <rect x="100" y="500" width="6" height="60" fill="#ff0090" opacity="0.8" filter="url(#neonPink)"/>
+    <!-- LEFT TOWERS -->
+    <!-- Tall thin tower far left -->
+    <rect x="30"  y="220" width="55" height="535" fill="url(#bldC)"/>
+    <rect x="35"  y="200" width="45" height="28"  fill="url(#bldC)"/>
+    <rect x="40"  y="182" width="35" height="25"  fill="url(#bldC)"/>
+    <!-- pink neon stripe -->
+    <rect x="30"  y="350" width="55" height="3" fill="#ff4db8" opacity="0.8" filter="url(#glowPink)"/>
+    <rect x="30"  y="500" width="55" height="3" fill="#ff4db8" opacity="0.6" filter="url(#glowPink)"/>
+    <!-- windows -->
+    <rect x="40"  y="240" width="10" height="15" fill="#ff66cc" opacity="0.95"/>
+    <rect x="56"  y="240" width="10" height="15" fill="#dd66ff" opacity="0.9"/>
+    <rect x="40"  y="265" width="10" height="15" fill="#cc44ff" opacity="0.85"/>
+    <rect x="56"  y="265" width="10" height="15" fill="#ff66cc" opacity="0.95"/>
+    <rect x="40"  y="290" width="10" height="15" fill="#ff66cc" opacity="0.95"/>
+    <rect x="56"  y="290" width="10" height="15" fill="#ffaaee" opacity="0.85"/>
+    <!-- antenna -->
+    <line x1="57" y1="182" x2="57" y2="140" stroke="#ff4db8" stroke-width="1.5" opacity="0.9"/>
+    <circle cx="57" cy="140" r="4" fill="#ff4db8" filter="url(#glowPink)"/>
 
-    <!-- Left mid tower -->
-    <rect x="240" y="200" width="100" height="560" fill="#040e1a"/>
-    <rect x="255" y="180" width="70" height="30" fill="#040e1a"/>
-    <rect x="265" y="160" width="50" height="28" fill="#040e1a"/>
-    <!-- Window rows -->
-    <rect x="255" y="220" width="14" height="20" fill="#00f5ff" opacity="0.5"/>
-    <rect x="275" y="220" width="14" height="20" fill="#00f5ff" opacity="0.2"/>
-    <rect x="295" y="220" width="14" height="20" fill="#ff0090" opacity="0.4"/>
-    <rect x="315" y="220" width="14" height="20" fill="#00f5ff" opacity="0.3"/>
-    <rect x="255" y="250" width="14" height="20" fill="#bf00ff" opacity="0.5"/>
-    <rect x="275" y="250" width="14" height="20" fill="#00f5ff" opacity="0.4"/>
-    <rect x="295" y="250" width="14" height="20" fill="#00f5ff" opacity="0.2"/>
-    <rect x="315" y="250" width="14" height="20" fill="#ff0090" opacity="0.3"/>
-    <rect x="255" y="280" width="14" height="20" fill="#00f5ff" opacity="0.3"/>
-    <rect x="275" y="280" width="14" height="20" fill="#bf00ff" opacity="0.4"/>
-    <rect x="295" y="280" width="14" height="20" fill="#00f5ff" opacity="0.5"/>
-    <rect x="315" y="280" width="14" height="20" fill="#00f5ff" opacity="0.2"/>
-    <rect x="255" y="310" width="74" height="4" fill="#00f5ff" opacity="0.6" filter="url(#neonCyan)"/>
-    <rect x="255" y="360" width="74" height="4" fill="#ff0090" opacity="0.5" filter="url(#neonPink)"/>
-    <!-- Holographic billboard -->
-    <rect x="245" y="430" width="110" height="60" fill="#001828" stroke="#00f5ff" stroke-width="1" opacity="0.8"/>
-    <rect x="247" y="432" width="106" height="56" fill="#00f5ff" opacity="0.05"/>
-    <text x="300" y="456" text-anchor="middle" font-family="monospace" font-size="9" fill="#00f5ff" opacity="0.9">NEURAL</text>
-    <text x="300" y="470" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff0090" opacity="0.9">NETWORK</text>
-    <text x="300" y="484" text-anchor="middle" font-family="monospace" font-size="7" fill="#bf00ff" opacity="0.7">v4.2.1</text>
-    <!-- Antenna -->
-    <line x1="290" y1="160" x2="290" y2="110" stroke="#00f5ff" stroke-width="2" opacity="0.9"/>
-    <circle cx="290" cy="110" r="5" fill="#00f5ff" filter="url(#neonCyan)"/>
-    <circle cx="290" cy="110" r="10" fill="none" stroke="#00f5ff" stroke-width="1" opacity="0.3"/>
+    <!-- Wide left block -->
+    <rect x="100" y="310" width="130" height="445" fill="url(#bldA)"/>
+    <rect x="110" y="290" width="110" height="28" fill="url(#bldA)"/>
+    <!-- neon horizontal lines -->
+    <rect x="100" y="390" width="130" height="3" fill="#ff4db8" opacity="0.7" filter="url(#glowPink)"/>
+    <rect x="100" y="510" width="130" height="3" fill="#bf00ff" opacity="0.6" filter="url(#glowPurple)"/>
+    <rect x="100" y="630" width="130" height="3" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <!-- vertical neon edges -->
+    <rect x="100" y="310" width="3" height="445" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="227" y="310" width="3" height="445" fill="#cc44ff" opacity="0.85" filter="url(#glowPurple)"/>
+    <!-- windows -->
+    <rect x="115" y="325" width="16" height="22" fill="#ffaaee" opacity="0.85"/>
+    <rect x="137" y="325" width="16" height="22" fill="#cc44ff" opacity="0.85"/>
+    <rect x="159" y="325" width="16" height="22" fill="#ff4db8" opacity="0.9"/>
+    <rect x="181" y="325" width="16" height="22" fill="#ffaaee" opacity="0.85"/>
+    <rect x="203" y="325" width="16" height="22" fill="#dd66ff" opacity="0.9"/>
+    <rect x="115" y="356" width="16" height="22" fill="#cc44ff" opacity="0.85"/>
+    <rect x="137" y="356" width="16" height="22" fill="#ff66cc" opacity="0.95"/>
+    <rect x="159" y="356" width="16" height="22" fill="#ffaaee" opacity="0.85"/>
+    <rect x="181" y="356" width="16" height="22" fill="#ff4db8" opacity="0.9"/>
+    <rect x="203" y="356" width="16" height="22" fill="#cc44ff" opacity="0.8"/>
+    <!-- hologram billboard -->
+    <rect x="110" y="420" width="110" height="65" fill="#2a0040" stroke="#ff4db8" stroke-width="1" opacity="0.85"/>
+    <text x="165" y="444" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff88d0" opacity="0.9">DREAM</text>
+    <text x="165" y="458" text-anchor="middle" font-family="monospace" font-size="9" fill="#bf00ff" opacity="0.9">UPLINK</text>
+    <text x="165" y="472" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff4db8" opacity="0.7">∞ connect</text>
 
-    <!-- Left cluster building -->
-    <rect x="360" y="420" width="90" height="340" fill="#030c16"/>
-    <rect x="370" y="400" width="70" height="30" fill="#030c16"/>
-    <rect x="365" y="460" width="10" height="260" fill="#00f5ff" opacity="0.15"/>
-    <rect x="440" y="460" width="10" height="260" fill="#ff0090" opacity="0.12"/>
-    <!-- Windows -->
-    <rect x="380" y="440" width="12" height="16" fill="#00f5ff" opacity="0.4"/>
-    <rect x="398" y="440" width="12" height="16" fill="#ff0090" opacity="0.3"/>
-    <rect x="416" y="440" width="12" height="16" fill="#00f5ff" opacity="0.5"/>
-    <rect x="380" y="465" width="12" height="16" fill="#bf00ff" opacity="0.4"/>
-    <rect x="398" y="465" width="12" height="16" fill="#00f5ff" opacity="0.2"/>
-    <rect x="416" y="465" width="12" height="16" fill="#00f5ff" opacity="0.35"/>
-    <rect x="380" y="490" width="12" height="16" fill="#ff0090" opacity="0.3"/>
-    <rect x="398" y="490" width="12" height="16" fill="#00f5ff" opacity="0.45"/>
-    <rect x="416" y="490" width="12" height="16" fill="#bf00ff" opacity="0.3"/>
+    <!-- Second left building -->
+    <rect x="250" y="360" width="100" height="395" fill="url(#bldB)"/>
+    <rect x="260" y="340" width="80"  height="28"  fill="url(#bldB)"/>
+    <rect x="250" y="440" width="100" height="3" fill="#bf00ff" opacity="0.7" filter="url(#glowPurple)"/>
+    <rect x="250" y="580" width="100" height="3" fill="#ff4db8" opacity="0.6" filter="url(#glowPink)"/>
+    <rect x="265" y="375" width="14" height="20" fill="#ff66cc" opacity="0.95"/>
+    <rect x="285" y="375" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="305" y="375" width="14" height="20" fill="#ffaaee" opacity="0.85"/>
+    <rect x="325" y="375" width="14" height="20" fill="#ff4db8" opacity="0.9"/>
+    <rect x="265" y="404" width="14" height="20" fill="#cc44ff" opacity="0.85"/>
+    <rect x="285" y="404" width="14" height="20" fill="#ff66cc" opacity="0.95"/>
+    <rect x="305" y="404" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="325" y="404" width="14" height="20" fill="#ffaaee" opacity="0.85"/>
+    <line x1="300" y1="340" x2="300" y2="295" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
+    <circle cx="300" cy="295" r="5" fill="#bf00ff" filter="url(#glowPurple)"/>
 
-    <!-- CENTERPIECE - Giant cyberpunk tower -->
-    <rect x="560" y="100" width="200" height="660" fill="#040f1c"/>
-    <rect x="580" y="80" width="160" height="30" fill="#040f1c"/>
-    <rect x="600" y="55" width="120" height="35" fill="#040f1c"/>
-    <rect x="620" y="35" width="80" height="30" fill="#040f1c"/>
-    <!-- Main neon stripe -->
-    <rect x="560" y="300" width="200" height="5" fill="#00f5ff" filter="url(#neonCyan)" opacity="0.9"/>
-    <rect x="560" y="450" width="200" height="5" fill="#ff0090" filter="url(#neonPink)" opacity="0.9"/>
-    <rect x="560" y="600" width="200" height="5" fill="#bf00ff" opacity="0.8" filter="url(#glow2)"/>
-    <!-- Vertical neon edges -->
-    <rect x="560" y="100" width="4" height="660" fill="#00f5ff" opacity="0.6" filter="url(#neonCyan)"/>
-    <rect x="756" y="100" width="4" height="660" fill="#ff0090" opacity="0.5" filter="url(#neonPink)"/>
-    <!-- Window grid -->
-    <rect x="575" y="120" width="18" height="28" fill="#00f5ff" opacity="0.3"/>
-    <rect x="600" y="120" width="18" height="28" fill="#00f5ff" opacity="0.5"/>
-    <rect x="625" y="120" width="18" height="28" fill="#ff0090" opacity="0.3"/>
-    <rect x="650" y="120" width="18" height="28" fill="#00f5ff" opacity="0.2"/>
-    <rect x="675" y="120" width="18" height="28" fill="#bf00ff" opacity="0.4"/>
-    <rect x="700" y="120" width="18" height="28" fill="#00f5ff" opacity="0.35"/>
-    <rect x="725" y="120" width="18" height="28" fill="#ff0090" opacity="0.25"/>
-
-    <rect x="575" y="160" width="18" height="28" fill="#bf00ff" opacity="0.4"/>
-    <rect x="600" y="160" width="18" height="28" fill="#00f5ff" opacity="0.2"/>
-    <rect x="625" y="160" width="18" height="28" fill="#00f5ff" opacity="0.5"/>
-    <rect x="650" y="160" width="18" height="28" fill="#ff0090" opacity="0.35"/>
-    <rect x="675" y="160" width="18" height="28" fill="#00f5ff" opacity="0.3"/>
-    <rect x="700" y="160" width="18" height="28" fill="#00f5ff" opacity="0.4"/>
-    <rect x="725" y="160" width="18" height="28" fill="#bf00ff" opacity="0.25"/>
-
-    <rect x="575" y="200" width="168" height="2" fill="#00f5ff" opacity="0.3"/>
-    <rect x="575" y="320" width="168" height="2" fill="#ff0090" opacity="0.2"/>
-
-    <!-- Big corp logo on building face -->
-    <rect x="610" y="370" width="100" height="70" fill="#001828" stroke="#00f5ff" stroke-width="1.5" opacity="0.9"/>
-    <text x="660" y="398" text-anchor="middle" font-family="monospace" font-size="10" fill="#00f5ff">NEXUS</text>
-    <text x="660" y="414" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff0090">CORPORATION</text>
-    <rect x="650" y="422" width="20" height="3" fill="#bf00ff" opacity="0.7"/>
-
+    <!-- CENTER MEGA TOWER (inspired by image 3 - tall central building with huge moon behind) -->
+    <rect x="570" y="80" width="220" height="675" fill="url(#bldE)"/>
+    <rect x="590" y="60" width="180" height="30"  fill="url(#bldE)"/>
+    <rect x="610" y="38" width="140" height="30"  fill="url(#bldE)"/>
+    <rect x="630" y="18" width="100" height="28"  fill="url(#bldE)"/>
+    <rect x="645" y="0"  width="70"  height="26"  fill="url(#bldE)"/>
     <!-- Spire -->
-    <rect x="650" y="35" width="20" height="30" fill="#030d18"/>
-    <line x1="660" y1="35" x2="660" y2="-10" stroke="#ff0090" stroke-width="2" opacity="0.9" filter="url(#neonPink)"/>
-    <circle cx="660" cy="-10" r="6" fill="#ff0090" filter="url(#neonPink)"/>
-
-    <!-- Right side towers -->
-    <rect x="800" y="300" width="130" height="460" fill="#040e1a"/>
-    <rect x="810" y="280" width="110" height="30" fill="#040e1a"/>
-    <rect x="820" y="260" width="90" height="28" fill="#040e1a"/>
-    <!-- Neon cross-beams -->
-    <rect x="800" y="380" width="130" height="3" fill="#00f5ff" opacity="0.5" filter="url(#neonCyan)"/>
-    <rect x="800" y="480" width="130" height="3" fill="#ff0090" opacity="0.4" filter="url(#neonPink)"/>
+    <line x1="680" y1="0"   x2="680" y2="-50" stroke="#ff4db8" stroke-width="2.5" filter="url(#glowPink)" opacity="0.95"/>
+    <circle cx="680" cy="-50" r="6" fill="#ff4db8" filter="url(#glowPink)"/>
+    <circle cx="680" cy="-50" r="14" fill="none" stroke="#ff4db8" stroke-width="1" opacity="0.3"/>
+    <!-- Main neon stripes -->
+    <rect x="570" y="200" width="220" height="4" fill="#ff4db8" filter="url(#glowPink)" opacity="0.95"/>
+    <rect x="570" y="380" width="220" height="4" fill="#bf00ff" filter="url(#glowPurple)" opacity="0.9"/>
+    <rect x="570" y="550" width="220" height="4" fill="#ff4db8" filter="url(#glowPink)" opacity="1.0"/>
+    <rect x="570" y="680" width="220" height="4" fill="#bf00ff" filter="url(#glowPurple)" opacity="1.0"/>
+    <!-- Vertical edge glows -->
+    <rect x="570" y="80" width="4" height="675" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="786" y="80" width="4" height="675" fill="#dd66ff" opacity="0.9"  filter="url(#glowPurple)"/>
     <!-- Windows -->
-    <rect x="815" y="305" width="16" height="22" fill="#00f5ff" opacity="0.4"/>
-    <rect x="837" y="305" width="16" height="22" fill="#bf00ff" opacity="0.5"/>
-    <rect x="859" y="305" width="16" height="22" fill="#00f5ff" opacity="0.2"/>
-    <rect x="881" y="305" width="16" height="22" fill="#ff0090" opacity="0.35"/>
-    <rect x="903" y="305" width="16" height="22" fill="#00f5ff" opacity="0.4"/>
-    <rect x="815" y="336" width="16" height="22" fill="#ff0090" opacity="0.3"/>
-    <rect x="837" y="336" width="16" height="22" fill="#00f5ff" opacity="0.4"/>
-    <rect x="859" y="336" width="16" height="22" fill="#00f5ff" opacity="0.5"/>
-    <rect x="881" y="336" width="16" height="22" fill="#bf00ff" opacity="0.3"/>
-    <rect x="903" y="336" width="16" height="22" fill="#00f5ff" opacity="0.2"/>
-    <!-- Hologram billboard -->
-    <rect x="810" y="520" width="120" height="70" fill="#000f1a" stroke="#bf00ff" stroke-width="1"/>
-    <text x="870" y="546" text-anchor="middle" font-family="monospace" font-size="8" fill="#bf00ff" opacity="0.9">UPLOAD</text>
-    <text x="870" y="560" text-anchor="middle" font-family="monospace" font-size="8" fill="#00f5ff" opacity="0.9">YOUR MIND</text>
-    <text x="870" y="577" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff0090" opacity="0.7">∞ FREE TRIAL</text>
-    <!-- Antenna -->
-    <line x1="870" y1="260" x2="870" y2="210" stroke="#bf00ff" stroke-width="2" opacity="0.8"/>
-    <circle cx="870" cy="210" r="5" fill="#bf00ff" filter="url(#glow2)"/>
+    <rect x="585" y="100" width="18" height="26" fill="#ffaaee" opacity="0.85"/>
+    <rect x="610" y="100" width="18" height="26" fill="#ff66cc" opacity="0.95"/>
+    <rect x="635" y="100" width="18" height="26" fill="#cc44ff" opacity="0.85"/>
+    <rect x="660" y="100" width="18" height="26" fill="#ff4db8" opacity="0.85"/>
+    <rect x="685" y="100" width="18" height="26" fill="#dd66ff" opacity="0.9"/>
+    <rect x="710" y="100" width="18" height="26" fill="#ffaaee" opacity="0.85"/>
+    <rect x="735" y="100" width="18" height="26" fill="#ff66cc" opacity="0.95"/>
+    <rect x="760" y="100" width="18" height="26" fill="#cc44ff" opacity="0.85"/>
+    <rect x="585" y="136" width="18" height="26" fill="#dd66ff" opacity="0.9"/>
+    <rect x="610" y="136" width="18" height="26" fill="#ffaaee" opacity="0.85"/>
+    <rect x="635" y="136" width="18" height="26" fill="#ff66cc" opacity="0.95"/>
+    <rect x="660" y="136" width="18" height="26" fill="#cc44ff" opacity="0.85"/>
+    <rect x="685" y="136" width="18" height="26" fill="#ffbbf0" opacity="0.9"/>
+    <rect x="710" y="136" width="18" height="26" fill="#ff4db8" opacity="0.9"/>
+    <rect x="735" y="136" width="18" height="26" fill="#dd66ff" opacity="0.9"/>
+    <rect x="760" y="136" width="18" height="26" fill="#ff4db8" opacity="0.85"/>
+    <!-- Big center sign -->
+    <rect x="615" y="420" width="130" height="80" fill="#280038" stroke="#ff4db8" stroke-width="1.5" opacity="0.9"/>
+    <text x="680" y="448" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff88d0">CHRONICLES</text>
+    <text x="680" y="464" text-anchor="middle" font-family="monospace" font-size="9"  fill="#bf00ff">OF CHARMI</text>
+    <rect x="650" y="475" width="60" height="2" fill="#ff4db8" opacity="0.8"/>
+    <!-- Windows lower section -->
+    <rect x="585" y="590" width="18" height="26" fill="#ff4db8" opacity="0.9"/>
+    <rect x="610" y="590" width="18" height="26" fill="#dd66ff" opacity="0.9"/>
+    <rect x="635" y="590" width="18" height="26" fill="#ffaaee" opacity="0.85"/>
+    <rect x="660" y="590" width="18" height="26" fill="#ff66cc" opacity="0.95"/>
+    <rect x="685" y="590" width="18" height="26" fill="#cc44ff" opacity="0.85"/>
+    <rect x="710" y="590" width="18" height="26" fill="#ff4db8" opacity="0.9"/>
+    <rect x="735" y="590" width="18" height="26" fill="#ffbbf0" opacity="0.9"/>
+    <rect x="760" y="590" width="18" height="26" fill="#cc44ff" opacity="0.8"/>
 
-    <!-- Far right towers -->
-    <rect x="980" y="380" width="90" height="380" fill="#030c14"/>
-    <rect x="990" y="360" width="70" height="28" fill="#030c14"/>
-    <rect x="980" y="420" width="4" height="300" fill="#ff0090" opacity="0.4" filter="url(#neonPink)"/>
-    <rect x="1066" y="420" width="4" height="300" fill="#00f5ff" opacity="0.3" filter="url(#neonCyan)"/>
-    <rect x="995" y="395" width="12" height="18" fill="#00f5ff" opacity="0.5"/>
-    <rect x="1013" y="395" width="12" height="18" fill="#ff0090" opacity="0.4"/>
-    <rect x="1031" y="395" width="12" height="18" fill="#00f5ff" opacity="0.3"/>
-    <rect x="1049" y="395" width="12" height="18" fill="#bf00ff" opacity="0.45"/>
-    <rect x="995" y="422" width="12" height="18" fill="#bf00ff" opacity="0.3"/>
-    <rect x="1013" y="422" width="12" height="18" fill="#00f5ff" opacity="0.5"/>
-    <rect x="1031" y="422" width="12" height="18" fill="#ff0090" opacity="0.35"/>
-    <rect x="1049" y="422" width="12" height="18" fill="#00f5ff" opacity="0.2"/>
+    <!-- RIGHT SIDE BUILDINGS -->
+    <rect x="840" y="300" width="140" height="455" fill="url(#bldA)"/>
+    <rect x="850" y="278" width="120" height="30"  fill="url(#bldA)"/>
+    <rect x="860" y="258" width="100" height="28"  fill="url(#bldA)"/>
+    <rect x="840" y="380" width="140" height="4" fill="#ff4db8" opacity="0.7" filter="url(#glowPink)"/>
+    <rect x="840" y="510" width="140" height="4" fill="#bf00ff" opacity="0.6" filter="url(#glowPurple)"/>
+    <rect x="840" y="620" width="140" height="4" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="855" y="318" width="16" height="22" fill="#ff66cc" opacity="0.95"/>
+    <rect x="877" y="318" width="16" height="22" fill="#dd66ff" opacity="0.9"/>
+    <rect x="899" y="318" width="16" height="22" fill="#ffaaee" opacity="0.85"/>
+    <rect x="921" y="318" width="16" height="22" fill="#ff4db8" opacity="0.9"/>
+    <rect x="943" y="318" width="16" height="22" fill="#dd66ff" opacity="0.9"/>
+    <rect x="855" y="348" width="16" height="22" fill="#cc44ff" opacity="0.85"/>
+    <rect x="877" y="348" width="16" height="22" fill="#ff66cc" opacity="0.95"/>
+    <rect x="899" y="348" width="16" height="22" fill="#ffaaee" opacity="0.85"/>
+    <rect x="921" y="348" width="16" height="22" fill="#ff4db8" opacity="0.85"/>
+    <rect x="943" y="348" width="16" height="22" fill="#dd66ff" opacity="0.9"/>
+    <!-- Billboard -->
+    <rect x="855" y="545" width="120" height="65" fill="#220035" stroke="#bf00ff" stroke-width="1"/>
+    <text x="915" y="568" text-anchor="middle" font-family="monospace" font-size="9" fill="#bf00ff" opacity="0.9">BUTTERFLY</text>
+    <text x="915" y="582" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff88d0" opacity="0.9">NETWORK</text>
+    <text x="915" y="598" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff4db8" opacity="0.7">v∞ online</text>
+    <line x1="910" y1="258" x2="910" y2="210" stroke="#ff4db8" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="910" cy="210" r="4" fill="#ff4db8" filter="url(#glowPink)"/>
 
-    <rect x="1100" y="320" width="110" height="440" fill="#040d18"/>
-    <rect x="1110" y="300" width="90" height="28" fill="#040d18"/>
-    <rect x="1100" y="380" width="110" height="3" fill="#00f5ff" opacity="0.5" filter="url(#neonCyan)"/>
-    <rect x="1100" y="500" width="110" height="3" fill="#ff0090" opacity="0.4" filter="url(#neonPink)"/>
-    <rect x="1115" y="340" width="14" height="20" fill="#00f5ff" opacity="0.4"/>
-    <rect x="1135" y="340" width="14" height="20" fill="#bf00ff" opacity="0.5"/>
-    <rect x="1155" y="340" width="14" height="20" fill="#00f5ff" opacity="0.3"/>
-    <rect x="1175" y="340" width="14" height="20" fill="#ff0090" opacity="0.4"/>
-    <rect x="1195" y="340" width="14" height="20" fill="#00f5ff" opacity="0.2"/>
+    <rect x="1000" y="380" width="100" height="375" fill="url(#bldE)"/>
+    <rect x="1010" y="360" width="80"  height="28"  fill="url(#bldE)"/>
+    <rect x="1000" y="450" width="100" height="3" fill="#bf00ff" opacity="0.65" filter="url(#glowPurple)"/>
+    <rect x="1000" y="580" width="100" height="3" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="1015" y="395" width="14" height="20" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1035" y="395" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1055" y="395" width="14" height="20" fill="#ffaaee" opacity="0.85"/>
+    <rect x="1075" y="395" width="14" height="20" fill="#ff4db8" opacity="0.9"/>
+    <rect x="1015" y="423" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1035" y="423" width="14" height="20" fill="#ff4db8" opacity="0.9"/>
+    <rect x="1055" y="423" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1075" y="423" width="14" height="20" fill="#ffaaee" opacity="0.85"/>
 
-    <rect x="1250" y="250" width="190" height="510" fill="#030c16"/>
-    <rect x="1260" y="230" width="170" height="28" fill="#030c16"/>
-    <rect x="1270" y="210" width="150" height="28" fill="#030c16"/>
-    <rect x="1250" y="330" width="190" height="4" fill="#00f5ff" opacity="0.6" filter="url(#neonCyan)"/>
-    <rect x="1250" y="480" width="190" height="4" fill="#ff0090" opacity="0.5" filter="url(#neonPink)"/>
-    <rect x="1250" y="600" width="190" height="4" fill="#bf00ff" opacity="0.4" filter="url(#glow2)"/>
-    <rect x="1265" y="270" width="16" height="24" fill="#00f5ff" opacity="0.5"/>
-    <rect x="1288" y="270" width="16" height="24" fill="#ff0090" opacity="0.4"/>
-    <rect x="1311" y="270" width="16" height="24" fill="#00f5ff" opacity="0.3"/>
-    <rect x="1334" y="270" width="16" height="24" fill="#bf00ff" opacity="0.5"/>
-    <rect x="1357" y="270" width="16" height="24" fill="#00f5ff" opacity="0.2"/>
-    <rect x="1380" y="270" width="16" height="24" fill="#ff0090" opacity="0.35"/>
-    <rect x="1403" y="270" width="16" height="24" fill="#00f5ff" opacity="0.4"/>
-    <!-- Antenna far right -->
-    <line x1="1345" y1="210" x2="1345" y2="160" stroke="#00f5ff" stroke-width="2" opacity="0.8"/>
-    <circle cx="1345" cy="160" r="5" fill="#00f5ff" filter="url(#neonCyan)"/>
+    <rect x="1120" y="260" width="160" height="495" fill="url(#bldC)"/>
+    <rect x="1130" y="238" width="140" height="30"  fill="url(#bldC)"/>
+    <rect x="1140" y="218" width="120" height="28"  fill="url(#bldC)"/>
+    <rect x="1120" y="340" width="160" height="4" fill="#ff4db8" opacity="0.75" filter="url(#glowPink)"/>
+    <rect x="1120" y="480" width="160" height="4" fill="#bf00ff" opacity="0.65" filter="url(#glowPurple)"/>
+    <rect x="1120" y="600" width="160" height="4" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="1120" y="260" width="4" height="495" fill="#ff66cc" opacity="0.95" filter="url(#glowPink)"/>
+    <rect x="1276" y="260" width="4" height="495" fill="#dd66ff" opacity="0.9"  filter="url(#glowPurple)"/>
+    <rect x="1135" y="278" width="16" height="24" fill="#ffaaee" opacity="0.85"/>
+    <rect x="1157" y="278" width="16" height="24" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1179" y="278" width="16" height="24" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1201" y="278" width="16" height="24" fill="#ff4db8" opacity="0.9"/>
+    <rect x="1223" y="278" width="16" height="24" fill="#ffbbf0" opacity="0.9"/>
+    <rect x="1245" y="278" width="16" height="24" fill="#cc44ff" opacity="0.85"/>
+    <rect x="1135" y="312" width="16" height="24" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1157" y="312" width="16" height="24" fill="#ffaaee" opacity="0.85"/>
+    <rect x="1179" y="312" width="16" height="24" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1201" y="312" width="16" height="24" fill="#cc44ff" opacity="0.85"/>
+    <rect x="1223" y="312" width="16" height="24" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1245" y="312" width="16" height="24" fill="#ffaaee" opacity="0.85"/>
+    <line x1="1200" y1="218" x2="1200" y2="170" stroke="#bf00ff" stroke-width="2" opacity="0.85"/>
+    <circle cx="1200" cy="170" r="5" fill="#bf00ff" filter="url(#glowPurple)"/>
 
-    <!-- Neon streetlights -->
-    <line x1="200" y1="760" x2="200" y2="650" stroke="#040e1a" stroke-width="6"/>
-    <rect x="192" y="645" width="24" height="4" fill="#00f5ff" opacity="0.9" filter="url(#neonCyan)"/>
-    <ellipse cx="204" cy="660" rx="30" ry="8" fill="#00f5ff" opacity="0.06"/>
+    <rect x="1310" y="330" width="130" height="425" fill="url(#bldD)"/>
+    <rect x="1320" y="310" width="110" height="28"  fill="url(#bldD)"/>
+    <rect x="1310" y="420" width="130" height="4" fill="#ff4db8" opacity="0.7" filter="url(#glowPink)"/>
+    <rect x="1310" y="560" width="130" height="4" fill="#bf00ff" opacity="0.6" filter="url(#glowPurple)"/>
+    <rect x="1325" y="348" width="14" height="20" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1345" y="348" width="14" height="20" fill="#dd66ff" opacity="0.9"/>
+    <rect x="1365" y="348" width="14" height="20" fill="#ffaaee" opacity="0.85"/>
+    <rect x="1385" y="348" width="14" height="20" fill="#ff66cc" opacity="0.95"/>
+    <rect x="1405" y="348" width="14" height="20" fill="#cc44ff" opacity="0.85"/>
+    <rect x="1420" y="348" width="14" height="20" fill="#ff4db8" opacity="0.85"/>
 
-    <line x1="480" y1="760" x2="480" y2="650" stroke="#040e1a" stroke-width="6"/>
-    <rect x="472" y="645" width="24" height="4" fill="#ff0090" opacity="0.9" filter="url(#neonPink)"/>
-    <ellipse cx="484" cy="660" rx="30" ry="8" fill="#ff0090" opacity="0.05"/>
+    <!-- Neon streetlights (pink glow) -->
+    <line x1="200" y1="755" x2="200" y2="645" stroke="#1a0228" stroke-width="6"/>
+    <rect x="192" y="640" width="24" height="4" fill="#ff4db8" opacity="0.95" filter="url(#glowPink)"/>
+    <ellipse cx="204" cy="660" rx="35" ry="10" fill="#ff4db8" opacity="0.07"/>
 
-    <line x1="960" y1="760" x2="960" y2="650" stroke="#040e1a" stroke-width="6"/>
-    <rect x="952" y="645" width="24" height="4" fill="#00f5ff" opacity="0.9" filter="url(#neonCyan)"/>
-    <ellipse cx="964" cy="660" rx="30" ry="8" fill="#00f5ff" opacity="0.06"/>
+    <line x1="460" y1="755" x2="460" y2="645" stroke="#1a0228" stroke-width="6"/>
+    <rect x="452" y="640" width="24" height="4" fill="#bf00ff" opacity="0.9" filter="url(#glowPurple)"/>
+    <ellipse cx="464" cy="660" rx="35" ry="10" fill="#bf00ff" opacity="0.06"/>
 
-    <line x1="1200" y1="760" x2="1200" y2="650" stroke="#040e1a" stroke-width="6"/>
-    <rect x="1192" y="645" width="24" height="4" fill="#bf00ff" opacity="0.9" filter="url(#glow2)"/>
-    <ellipse cx="1204" cy="660" rx="30" ry="8" fill="#bf00ff" opacity="0.05"/>
+    <line x1="980" y1="755" x2="980" y2="645" stroke="#1a0228" stroke-width="6"/>
+    <rect x="972" y="640" width="24" height="4" fill="#ff4db8" opacity="0.9" filter="url(#glowPink)"/>
+    <ellipse cx="984" cy="660" rx="35" ry="10" fill="#ff4db8" opacity="0.07"/>
 
-    <!-- Floating holo ads in sky -->
-    <rect x="150" y="170" width="80" height="40" fill="none" stroke="#00f5ff" stroke-width="1" opacity="0.4"/>
-    <text x="190" y="186" text-anchor="middle" font-family="monospace" font-size="7" fill="#00f5ff" opacity="0.6">BUY</text>
-    <text x="190" y="200" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff0090" opacity="0.6">IMPLANTS</text>
+    <line x1="1240" y1="755" x2="1240" y2="645" stroke="#1a0228" stroke-width="6"/>
+    <rect x="1232" y="640" width="24" height="4" fill="#bf00ff" opacity="0.85" filter="url(#glowPurple)"/>
+    <ellipse cx="1244" cy="660" rx="35" ry="10" fill="#bf00ff" opacity="0.06"/>
 
-    <rect x="1100" y="140" width="90" height="40" fill="none" stroke="#ff0090" stroke-width="1" opacity="0.4"/>
-    <text x="1145" y="156" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff0090" opacity="0.6">DREAM</text>
-    <text x="1145" y="170" text-anchor="middle" font-family="monospace" font-size="7" fill="#00f5ff" opacity="0.6">UPLINK v9</text>
+    <!-- Floating holo ads -->
+    <rect x="80" y="160" width="90" height="44" fill="none" stroke="#ff4db8" stroke-width="1" opacity="0.5"/>
+    <text x="125" y="178" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff88d0" opacity="0.8">FEEL</text>
+    <text x="125" y="192" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff4db8" opacity="0.7">EVERYTHING</text>
 
-    <!-- Ground glow from buildings -->
-    <ellipse cx="660" cy="762" rx="300" ry="20" fill="#00f5ff" opacity="0.04"/>
-    <ellipse cx="300" cy="762" rx="180" ry="12" fill="#ff0090" opacity="0.04"/>
-    <ellipse cx="1100" cy="762" rx="200" ry="12" fill="#bf00ff" opacity="0.03"/>
+    <rect x="1260" y="150" width="100" height="44" fill="none" stroke="#bf00ff" stroke-width="1" opacity="0.5"/>
+    <text x="1310" y="168" text-anchor="middle" font-family="monospace" font-size="8" fill="#bf00ff" opacity="0.8">MEMORIES</text>
+    <text x="1310" y="182" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff88d0" opacity="0.7">FOR SALE</text>
 
-    <!-- Bottom fog layer -->
-    <rect x="0" y="730" width="1440" height="35" fill="url(#skyFog)" opacity="0.6"/>
+    <!-- Ground mist / fog -->
+    <ellipse cx="720" cy="758" rx="800" ry="22" fill="#ff4db8" opacity="0.04"/>
+    <ellipse cx="300" cy="758" rx="300" ry="14" fill="#bf00ff" opacity="0.03"/>
+    <ellipse cx="1100" cy="758" rx="300" ry="14" fill="#ff4db8" opacity="0.03"/>
+    <!-- Bottom fade -->
+    <rect x="0" y="720" width="1440" height="40" fill="#0a0115" opacity="0.5"/>
   </svg>
 
-  <!-- Cyberpunk Drone Bird -->
+  <!-- Butterfly Delivery -->
   <div id="bird-scene">
     <div class="bird-container" id="bird">
-      <svg class="bird-svg" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-        <!-- Drone body - hexagonal core -->
-        <polygon points="60,38 72,44 72,56 60,62 48,56 48,44" fill="#040e1a" stroke="#00f5ff" stroke-width="1.5"/>
-        <!-- Inner core -->
-        <polygon points="60,43 67,47 67,53 60,57 53,53 53,47" fill="#001828" stroke="#00f5ff" stroke-width="0.8" opacity="0.8"/>
-        <!-- Glowing center dot -->
-        <circle cx="60" cy="50" r="4" fill="#00f5ff" opacity="0.9"/>
-        <circle cx="60" cy="50" r="7" fill="none" stroke="#00f5ff" stroke-width="0.5" opacity="0.5"/>
-
-        <!-- Left arms -->
-        <line x1="48" y1="47" x2="20" y2="38" stroke="#00f5ff" stroke-width="1.5" opacity="0.8"/>
-        <line x1="48" y1="53" x2="18" y2="58" stroke="#00f5ff" stroke-width="1.5" opacity="0.8"/>
-
-        <!-- Right arms -->
-        <line x1="72" y1="47" x2="100" y2="38" stroke="#ff0090" stroke-width="1.5" opacity="0.8"/>
-        <line x1="72" y1="53" x2="102" y2="58" stroke="#ff0090" stroke-width="1.5" opacity="0.8"/>
-
-        <!-- Rotors (spinning look) -->
+      <svg class="bird-svg" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="70" cy="52" rx="6" ry="14" fill="#1a0030" stroke="#ff4db8" stroke-width="1"/>
+        <!-- Antennae -->
+        <line x1="68" y1="40" x2="58" y2="26" stroke="#ff88d0" stroke-width="1.2" opacity="0.9"/>
+        <line x1="72" y1="40" x2="82" y2="26" stroke="#ff88d0" stroke-width="1.2" opacity="0.9"/>
+        <circle cx="58" cy="25" r="2.5" fill="#ff4db8"/>
+        <circle cx="82" cy="25" r="2.5" fill="#ff4db8"/>
+        <!-- Upper left wing -->
         <g class="wing-left">
-          <ellipse cx="16" cy="36" rx="16" ry="4" fill="#00f5ff" opacity="0.3" transform="rotate(-15 16 36)"/>
-          <ellipse cx="16" cy="36" rx="4" ry="16" fill="#00f5ff" opacity="0.2" transform="rotate(-15 16 36)"/>
-          <circle cx="16" cy="36" r="3" fill="#00f5ff" opacity="0.9"/>
+          <path d="M67,46 Q40,20 18,30 Q10,50 35,58 Z" fill="#ff4db8" opacity="0.75"/>
+          <path d="M67,46 Q40,20 18,30 Q10,50 35,58 Z" fill="none" stroke="#ff88d0" stroke-width="0.8" opacity="0.6"/>
+          <!-- wing pattern -->
+          <circle cx="38" cy="40" r="5" fill="#dd66ff" opacity="0.9"/>
+          <circle cx="28" cy="48" r="3" fill="#ffbbf0" opacity="0.9"/>
         </g>
+        <!-- Lower left wing -->
+        <path d="M67,52 Q42,55 22,72 Q30,85 52,72 Z" fill="#ff4db8" opacity="0.6"/>
+        <path d="M67,52 Q42,55 22,72 Q30,85 52,72 Z" fill="none" stroke="#ff88d0" stroke-width="0.6" opacity="0.5"/>
+        <!-- Upper right wing -->
         <g class="wing-right">
-          <ellipse cx="104" cy="36" rx="16" ry="4" fill="#ff0090" opacity="0.3" transform="rotate(15 104 36)"/>
-          <ellipse cx="104" cy="36" rx="4" ry="16" fill="#ff0090" opacity="0.2" transform="rotate(15 104 36)"/>
-          <circle cx="104" cy="36" r="3" fill="#ff0090" opacity="0.9"/>
+          <path d="M73,46 Q100,20 122,30 Q130,50 105,58 Z" fill="#ff4db8" opacity="0.75"/>
+          <path d="M73,46 Q100,20 122,30 Q130,50 105,58 Z" fill="none" stroke="#ff88d0" stroke-width="0.8" opacity="0.6"/>
+          <circle cx="102" cy="40" r="5" fill="#dd66ff" opacity="0.9"/>
+          <circle cx="112" cy="48" r="3" fill="#ffbbf0" opacity="0.9"/>
         </g>
-        <!-- Lower rotors -->
-        <ellipse cx="14" cy="58" rx="14" ry="3" fill="#00f5ff" opacity="0.25"/>
-        <circle cx="14" cy="58" r="2.5" fill="#00f5ff" opacity="0.8"/>
-        <ellipse cx="106" cy="58" rx="14" ry="3" fill="#ff0090" opacity="0.25"/>
-        <circle cx="106" cy="58" r="2.5" fill="#ff0090" opacity="0.8"/>
+        <!-- Lower right wing -->
+        <path d="M73,52 Q98,55 118,72 Q110,85 88,72 Z" fill="#ff4db8" opacity="0.6"/>
+        <path d="M73,52 Q98,55 118,72 Q110,85 88,72 Z" fill="none" stroke="#ff88d0" stroke-width="0.6" opacity="0.5"/>
+        <!-- Wing shimmer lines -->
+        <path d="M67,46 Q50,35 30,38" stroke="#ff88d0" stroke-width="0.5" fill="none" opacity="0.5"/>
+        <path d="M73,46 Q90,35 110,38" stroke="#ff88d0" stroke-width="0.5" fill="none" opacity="0.5"/>
 
-        <!-- Delivery cable -->
-        <line x1="60" y1="62" x2="60" y2="75" stroke="#00f5ff" stroke-width="1" opacity="0.7" stroke-dasharray="2,2"/>
-
-        <!-- Data capsule (instead of scroll) -->
-        <rect x="50" y="73" width="20" height="14" rx="4" fill="#001828" stroke="#00f5ff" stroke-width="1.5"/>
-        <rect x="52" y="76" width="16" height="2" fill="#00f5ff" opacity="0.6"/>
-        <rect x="52" y="80" width="12" height="2" fill="#ff0090" opacity="0.5"/>
-        <rect x="52" y="84" width="8" height="1" fill="#bf00ff" opacity="0.4"/>
-        <!-- Capsule glow -->
-        <rect x="50" y="73" width="20" height="14" rx="4" fill="none" stroke="#00f5ff" stroke-width="0.5" opacity="0.4"/>
-
-        <!-- Scanning beam below drone -->
-        <line x1="55" y1="62" x2="50" y2="78" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
-        <line x1="65" y1="62" x2="70" y2="78" stroke="#00f5ff" stroke-width="0.5" opacity="0.3"/>
+        <!-- Silk thread to scroll -->
+        <line x1="70" y1="66" x2="70" y2="80" stroke="#ff88d0" stroke-width="0.8" opacity="0.7" stroke-dasharray="2,2"/>
+        <!-- Mini scroll / data capsule -->
+        <rect x="58" y="79" width="24" height="16" rx="3" fill="#1a0030" stroke="#ff4db8" stroke-width="1.2"/>
+        <rect x="56" y="77" width="28" height="5" rx="2.5" fill="#bf00ff" opacity="0.8"/>
+        <rect x="56" y="90" width="28" height="5" rx="2.5" fill="#bf00ff" opacity="0.8"/>
+        <rect x="62" y="82" width="16" height="2" fill="#ff88d0" opacity="0.6"/>
+        <rect x="62" y="86" width="12" height="1.5" fill="#ff66cc" opacity="0.95"/>
       </svg>
     </div>
   </div>
 
-  <!-- Neon pillars (replacing candles) -->
+  <!-- Neon pillars -->
   <div class="candle" style="position:absolute;bottom:40px;left:10%">
     <div class="candle-flame"></div>
     <div class="candle-body"></div>
@@ -348,10 +355,10 @@
   <div class="glow-right"></div>
 
   <div class="intro-text" id="intro-text">
-    <h1>Neural Chronicles</h1>
-    <p>// dispatches from the grid //</p>
+    <h1>Chronicles of Charmi</h1>
+    <p>// blogs you can relate to //</p>
   </div>
-  <div class="scroll-hint" id="scroll-hint">▼ scroll to access ▼</div>
+  <div class="scroll-hint" id="scroll-hint">▼ scroll down ▼</div>
 </div>
 
 <!-- ===================== SCROLL UNROLL SECTION ===================== -->
@@ -368,12 +375,12 @@
     <div class="scroll-top-roller"></div>
     <div class="scroll-body" id="scroll-body">
       <div class="scroll-inner">
-        <div class="scroll-title">Neural Chronicles</div>
-        <div class="scroll-subtitle">// a transmission log of thoughts, memories & midnight signals //</div>
-        <div class="divider">◈</div>
+        <div class="scroll-title">Chronicles of Charmi</div>
+        <div class="scroll-subtitle">// blogs you can relate to //</div>
+        <div class="divider">✦</div>
         <ul class="blog-list" id="blog-list"></ul>
-        <div class="divider" style="margin-top:24px">◈</div>
-        <p style="text-align:center;font-style:normal;font-size:12px;color:rgba(0,245,255,0.3);margin-top:8px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;">[ SELECT ENTRY TO DECRYPT ]</p>
+        <div class="divider" style="margin-top:24px">✦</div>
+        <p style="text-align:center;font-size:12px;color:rgba(255,77,184,0.4);margin-top:8px;font-family:'Share Tech Mono',monospace;letter-spacing:2px;">[ click any entry to read ]</p>
       </div>
     </div>
     <div class="scroll-bottom-roller"></div>
@@ -381,24 +388,24 @@
 </div>
 
 <!-- ===================== PUBLISHER BADGE ===================== -->
-<div id="pub-badge" onclick="toggleDashboard()">◈ Publisher Node</div>
+<div id="pub-badge" onclick="toggleDashboard()">✦ Publisher Studio</div>
 
 <!-- ===================== PUBLISHER DASHBOARD ===================== -->
 <div id="publisher-dashboard">
   <div class="pub-header">
-    <div class="pub-logo">⬡ <span>Publisher</span> Node</div>
+    <div class="pub-logo">✦ <span>Publisher</span> Studio</div>
     <div class="pub-nav">
-      <button class="pub-nav-btn active" onclick="switchPubTab('posts', this)">◈ Entries</button>
-      <button class="pub-nav-btn" onclick="switchPubTab('comments', this)">◈ Comments</button>
+      <button class="pub-nav-btn active" onclick="switchPubTab('posts', this)">✦ Entries</button>
+      <button class="pub-nav-btn" onclick="switchPubTab('comments', this)">✦ Comments</button>
     </div>
-    <button class="pub-exit-btn" onclick="exitPublisher()">✕ Disconnect</button>
+    <button class="pub-exit-btn" onclick="exitPublisher()">✕ Exit</button>
   </div>
   <div class="pub-content">
     <div class="pub-panel active" id="pub-panel-posts">
-      <div class="pub-section-title">◈ All Transmissions</div>
-      <div class="pub-section-sub">manage, edit, or purge your uploaded entries</div>
+      <div class="pub-section-title">✦ All Entries</div>
+      <div class="pub-section-sub">manage, edit, or remove your published entries</div>
       <div class="post-cards" id="pub-post-cards"></div>
-      <button class="new-post-btn" onclick="openEditor(null)">◈ Upload New Entry</button>
+      <button class="new-post-btn" onclick="openEditor(null)">✦ Write New Entry</button>
       <div id="editor-panel">
         <hr class="pub-divider">
         <div class="editor-wrap">
@@ -407,29 +414,29 @@
             <div class="editor-badge" id="editor-badge">COMPOSING</div>
           </div>
           <div class="editor-field">
-            <label class="editor-label">Entry Title</label>
-            <input type="text" class="editor-input" id="ed-title" placeholder="e.g. Signal Lost at 3AM..." />
+            <label class="editor-label">Title</label>
+            <input type="text" class="editor-input" id="ed-title" placeholder="e.g. that one day I couldn't say no..." />
           </div>
           <div class="editor-field">
-            <label class="editor-label">Timestamp</label>
+            <label class="editor-label">Date</label>
             <input type="text" class="editor-input" id="ed-date" placeholder="e.g. 02 Jan 2024" />
           </div>
           <div class="editor-field">
-            <label class="editor-label">Transmission Body</label>
-            <textarea class="editor-textarea" id="ed-body" placeholder="Begin transmission... Separate paragraphs with blank lines."></textarea>
-            <div class="editor-hint">// separate paragraphs with blank lines — no markup needed</div>
+            <label class="editor-label">Your Story</label>
+            <textarea class="editor-textarea" id="ed-body" placeholder="Write your heart out... Separate paragraphs with blank lines."></textarea>
+            <div class="editor-hint">// separate paragraphs with blank lines</div>
           </div>
           <div class="editor-actions">
-            <button class="save-btn" onclick="savePost()">◈ Upload & Seal</button>
-            <button class="cancel-btn" onclick="closeEditor()">Abort</button>
-            <div class="save-notice" id="save-notice">✓ Transmission saved to grid</div>
+            <button class="save-btn" onclick="savePost()">✦ Publish</button>
+            <button class="cancel-btn" onclick="closeEditor()">Cancel</button>
+            <div class="save-notice" id="save-notice">✓ Entry published!</div>
           </div>
         </div>
       </div>
     </div>
     <div class="pub-panel" id="pub-panel-comments">
-      <div class="pub-section-title">◈ Incoming Signals</div>
-      <div class="pub-section-sub">review, edit, or delete reader transmissions</div>
+      <div class="pub-section-title">✦ Comments</div>
+      <div class="pub-section-sub">view, edit, or delete reader comments</div>
       <div class="comment-manage-list" id="comment-manage-list"></div>
     </div>
   </div>
@@ -438,7 +445,7 @@
 <!-- ===================== BLOG POST PAGE ===================== -->
 <div id="post-page">
   <div class="post-parchment" id="post-parchment">
-    <button class="back-btn" id="back-btn">← Back to Grid</button>
+    <button class="back-btn" id="back-btn">← Back</button>
     <div class="post-header">
       <div class="post-number" id="post-number"></div>
       <h1 class="post-title" id="post-title"></h1>
@@ -446,20 +453,20 @@
     </div>
     <div class="post-body" id="post-body"></div>
     <div class="comment-section">
-      <h3>◈ Incoming Signals</h3>
+      <h3>Comments</h3>
       <div class="existing-comments" id="existing-comments"></div>
-      <button class="comment-toggle-btn" id="comment-toggle-btn">Transmit a Signal</button>
+      <button class="comment-toggle-btn" id="comment-toggle-btn">Leave a Comment</button>
       <div class="comment-form" id="comment-form">
         <div>
-          <label>Your Handle</label>
-          <input type="text" id="comment-name" placeholder="e.g. ghost_in_shell_99..." />
+          <label>Your Name</label>
+          <input type="text" id="comment-name" placeholder="your name..." />
         </div>
         <div>
-          <label>Your Signal</label>
-          <textarea id="comment-text" placeholder="Transmit your thoughts into the grid..."></textarea>
+          <label>Your Comment</label>
+          <textarea id="comment-text" placeholder="write something..."></textarea>
         </div>
-        <button class="comment-submit" id="comment-submit">Send Signal ◈</button>
-        <div class="comment-success" id="comment-success">◈ Signal received. Transmission logged to grid. ◈</div>
+        <button class="comment-submit" id="comment-submit">Post Comment ✦</button>
+        <div class="comment-success" id="comment-success">✦ Comment posted! ✦</div>
       </div>
     </div>
   </div>
